@@ -73,9 +73,13 @@
         </div>
     </section>
     <footer class="has-background-dark has-text-white p-6">
-        <h1 class="is-size-5">Background Image Source</h1>
-        <a href='https://www.freepik.com/vectors/travel'>Travel vector created by macrovector - www.freepik.com</a>
-        <a href="https://www.pexels.com/photo/drone-shot-of-trees-5345029/">Photo by Olenka Sergienko from Pexels</a>
+        <h1 class="is-size-4">Background Image Sources</h1>
+        <br>
+        <ul>
+            <li><a href='https://www.freepik.com/vectors/travel'>Travel vector created by macrovector - www.freepik.com</a></li>
+            <br>
+            <li><a href="https://www.pexels.com/photo/drone-shot-of-trees-5345029/">Photo by Olenka Sergienko from Pexels</a></li>
+        </ul>
     </footer>
 
     <script>
@@ -88,7 +92,7 @@
             } else {
                 console.log("sd")
                 d[2].style.display = 'block';
-                document.querySelector("#p").innerHTML = w.absolute + '<b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                document.querySelector("#p").innerHTML = e.absolute + '<b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
             }
         });
     </script>
