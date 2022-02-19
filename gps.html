@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>GPS</title>
+</head>
+
+<body>
+    <h1>Hi</h1>
+    <script>
+        //setInterval(displayHello, 500);
+        const sensor = new AbsoluteOrientationSensor();
+        Promise.all([navigator.permissions.query({
+                name: "accelerometer"
+            })])
+            .then(results => {
+                if (results.every(result => result.state === "granted")) {
+                    sensor.start();
+                } else {
+                    console.log("No permissions to use AbsoluteOrientationSensor.");
+                }
+            });
+        window.addEventListener("deviceorientation", (e) => {
+            console.log('X: ' + e.alpha + ', Y: ' + e.beta + ', Z: ' + e.gamma);
+            document.querySelector("h1").innerHTML = 'X: ' + e.alpha + ', Y: ' + e.beta + ', Z: ' + e.gamma;
+        });
+        console.log("11111");
+        /*
+               const params = new URLSearchParams(new URL(window.location.href).search.slice(1));
+               const relative = !!Number(params.get("relative"));
+               const coordinateSystem = params.get("coord");
+
+               let container, sensor, camera, scene, renderer, model;
+
+               if (navigator.permissions) {
+                   // https://w3c.github.io/orientation-sensor/#model
+                   Promise.all([navigator.permissions.query({
+                           name: "accelerometer"
+                       })])
+                       .then(results => {
+                           if (results.every(result => result.state === "granted")) {
+                               initSensor();
+                           } else {
+                               console.log("Permission to use sensor was denied.");
+                           }
+                       }).catch(err => {
+                           console.log("Integration with Permissions API is not enabled, still try to start app.");
+                           initSensor();
+                       });
+               } else {
+                   console.log("No Permissions API, still try to start app.");
+                   initSensor();
+               }
+
+               function initSensor() {
+                   const options = {
+                       frequency: 60,
+                       coordinateSystem
+                   };
+                   document.querySelector("h1").innerHTML = JSON.stringify(options);
+                   console.log(JSON.stringify(options));
+                   sensor = relative ? new RelativeOrientationSensor(options) : new AbsoluteOrientationSensor(options);
+                   sensor.onreading = () => model.quaternion.fromArray(sensor.quaternion).inverse();
+                   sensor.onerror = (event) => {
+                       if (event.error.name == 'NotReadableError') {
+                           console.log("Sensor is not available.");
+                       }
+                   }
+                   sensor.start();
+               } */
+    </script>
+</body>
+
+</html>
