@@ -76,12 +76,15 @@
             <p class="is-size-3 p-4"><strong>What The Website Doing?</strong></p>
             <p>This thing uses your device orientation data to detect movement and calculate a approximate location based on your given longitude and latitude.</p>
         </div>
-        <div class="card mx-auto my-6 column">
-            <b><p class="is-size-3 p-4" style="color: #D83A56;">Error!</p></b>
-            <p class="container is-size-5 p-4"><strong style="color: #FF616D;">Trying giving permission for motion sensor. <br> If still not working then either your Device don't have a motion sensor or browser doesn't support it.</strong></p>
+        <div id="err" class="card mx-auto my-6 column">
+            <div class="container">
+                <b><p class="is-size-3 p-4" style="color: #D83A56;">Error!</p></b>
+                <p class="is-size-5 p-4"><strong style="color: #FF616D;">Trying giving permission for motion sensor. <br> If still not working then either your Device don't have a motion sensor or browser doesn't support it.</strong></p>
+                <b class="is-size-5 p-4"><strong style="color: #FF616D;">Please Refresh if Permition is granted.</b>
+            </div>
         </div>
 
-        <div class="card mx-auto my-6 column">
+        <div id="ok" class="card mx-auto my-6 column">
             <b><p class="is-size-3 p-4">Your Location<br></p></b>
             <p id="p" class="container has-text-dark is-size-5 p-4"></p>
         </div>
@@ -97,28 +100,43 @@
     </footer>
 
     <script>
-        let y = '';
+        let x = null;
+        let y = null;
+        let xp = null;
+        let xc = null;
+        let yp = null;
+        let yc = null;
+        let p = null;
+        let a = null;
+        let err = document.querySelector("#err");
+        let ok = document.querySelector("#ok");
+        err.style.display = 'none';
+        ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 60
+            frequency: 20
         });
         laSensor.addEventListener('reading', e => {
-            y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x.toPrecision(2) + '<br><b>Y:</b> ' + laSensor.y.toPrecision(2) + '<br><b>Z:</b> ' + laSensor.z.toPrecision(2) + "<br>";
+            a = e;
+            y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
+            yc = [laSensor.x, laSensor.y, laSensor.z];
         });
         laSensor.start();
-        let d = document.querySelectorAll("div");
-        d[1].style.display = 'none';
-        d[2].style.display = 'none';
         window.addEventListener("deviceorientation", (e) => {
-            if (e.alpha === null || e.beta === null || e.gamma === null) {
-                d[1].style.display = 'block';
-            } else {
-                console.log("sd")
-                d[2].style.display = 'block';
-                let x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
-
-                document.querySelector("#p").innerHTML = x + y;
+            p = e;
+            if (p.alpha != null || p.beta != null || p.gamma != null) {
+                x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                xc = [e.alpha, e.beta, e.gamma];
             }
         });
+        setInterval(() => {
+            if (p.alpha === null || p.beta === null || p.gamma === null) {
+                err.style.display = 'block';
+            } else {
+                ok.style.display = 'block';
+            }
+            console.log('fucl')
+            document.querySelector("#p").innerHTML = x + y;
+        }, 200);
     </script>
 </body>
 
