@@ -98,14 +98,13 @@
 
     <script>
         let y = '';
-        let acl = new Accelerometer({
+        let laSensor = new LinearAccelerationSensor({
             frequency: 60
         });
-        acl.addEventListener('reading', () => {
-            y = 'Acc.' + '<br><b>X:</b> ' + acl.x.toPrecision(2) + '<br><b>Y:</b> ' + acl.y.toPrecision(2) + '<br><b>Z:</b> ' + acl.z.toPrecision(2) + "<br>";
+        laSensor.addEventListener('reading', e => {
+            y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x.toPrecision(2) + '<br><b>Y:</b> ' + laSensor.y.toPrecision(2) + '<br><b>Z:</b> ' + laSensor.z.toPrecision(2) + "<br>";
         });
-
-        acl.start();
+        laSensor.start();
         let d = document.querySelectorAll("div");
         d[1].style.display = 'none';
         d[2].style.display = 'none';
