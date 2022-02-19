@@ -97,6 +97,16 @@
     </footer>
 
     <script>
+        let acl = new Accelerometer({
+            frequency: 60
+        });
+        acl.addEventListener('reading', () => {
+            console.log("Acceleration along the X-axis " + acl.x);
+            console.log("Acceleration along the Y-axis " + acl.y);
+            console.log("Acceleration along the Z-axis " + acl.z);
+        });
+
+        acl.start();
         let d = document.querySelectorAll("div");
         d[1].style.display = 'none';
         d[2].style.display = 'none';
@@ -106,7 +116,7 @@
             } else {
                 console.log("sd")
                 d[2].style.display = 'block';
-                document.querySelector("#p").innerHTML = e.absolute + '<b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                document.querySelector("#p").innerHTML = e + '<b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
             }
         });
     </script>
