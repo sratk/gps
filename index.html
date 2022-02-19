@@ -147,7 +147,7 @@
             yc[2] = (yc[2] > .2 || yc[2] <
                 -.2) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
             d = [d[0] + yc[0] * t * t, d[1] + yc[1] * t * t, d[2] + yc[2] * t * t];
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance: X: ' + d[0] + ' Y: ' + d[1] + ' Z: ' + d[2];
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance: X: ' + d[0].toFixed(2) + ' Y: ' + d[1].toFixed(2) + ' Z: ' + d[2].toFixed(2);
         }, 200);
         document.getElementById("rst").addEventListener("click", () => {
             d = [0, 0, 0];
