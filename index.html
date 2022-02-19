@@ -102,12 +102,13 @@
     <script>
         let x = null;
         let y = null;
-        let xp = null;
-        let xc = null;
-        let yp = null;
-        let yc = null;
+        let xp = [];
+        let xc = [];
+        let yp = [];
+        let yc = [];
         let p = null;
         let a = null;
+        let d = [];
         let err = document.querySelector("#err");
         let ok = document.querySelector("#ok");
         err.style.display = 'none';
@@ -134,8 +135,8 @@
             } else {
                 ok.style.display = 'block';
             }
-            console.log('fucl')
-            document.querySelector("#p").innerHTML = x + y;
+            d = [yc[0] * 0.1, yc[1] * 0.1, yc[2] * 0.1];
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance: X' + d[0] + ' Y: ' + d[1] + ' Z: ' + d[2];
         }, 200);
     </script>
 </body>
