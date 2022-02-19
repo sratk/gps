@@ -51,13 +51,27 @@
     .navbar-item:hover {
         background-color: #f4a442;
     }
+    
+     ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+     ::-webkit-scrollbar-track {
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+    }
+    
+     ::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(180deg, #818181 0%, #585858 99%);
+        border-radius: 10px;
+    }
 </style>
 
 <body>
-    <section class="has-text-centered" style="height: 30%; margin: auto;background-image: url(./images/5345029.jpg);">
-        <b class="p-6-desktop mt-6 is-size-1-touch" style="font-size: 150px;color:#fff;">PROJECT DOG TAG</b>
+    <section class="" style="height: 30%;margin:0;background-image: url(./images/5345029.jpg);top:0;">
+        <b class="m-auto p-6-desktop is-size-1-touch" style="font-size: 100px;color:#fff;position: absolute;left:25%;top:5%;">PROJECT DOG TAG</b>
     </section>
-    <section class="p-6 columns">
+    <section class="p-6 columns m-0">
         <div class="card m-auto column">
             <p class="is-size-3 p-4"><strong>What The Website Doing?</strong></p>
             <p>This thing uses your device orientation data to detect movement and calculate a approximate location based on your given longitude and latitude.</p>
