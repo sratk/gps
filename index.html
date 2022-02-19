@@ -97,13 +97,12 @@
     </footer>
 
     <script>
+        let y = '';
         let acl = new Accelerometer({
             frequency: 60
         });
         acl.addEventListener('reading', () => {
-            console.log("Acceleration along the X-axis " + acl.x);
-            console.log("Acceleration along the Y-axis " + acl.y);
-            console.log("Acceleration along the Z-axis " + acl.z);
+            y = 'Acc.' + '<br><b>X:</b> ' + acl.x.toPrecision(2) + '<br><b>Y:</b> ' + acl.y.toPrecision(2) + '<br><b>Z:</b> ' + acl.z.toPrecision(2) + "<br>";
         });
 
         acl.start();
@@ -116,7 +115,9 @@
             } else {
                 console.log("sd")
                 d[2].style.display = 'block';
-                document.querySelector("#p").innerHTML = e + '<b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                let x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+
+                document.querySelector("#p").innerHTML = x + y;
             }
         });
     </script>
