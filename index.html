@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>GPS</title>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    html {
+        background-image: url('./images/5401210.jpg');
+        scroll-behavior: smooth;
+    }
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.5s;
+        border-radius: 30px;
+        min-width: 300px;
+        max-width: 500px;
+    }
+    
+    .card:hover {
+        box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .container {
+        padding: 2px 16px;
+    }
+    
+    .navbar {
+        top: 0;
+        background-color: #f4a4428c;
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        margin: auto;
+    }
+    
+    .navbar-item:hover {
+        background-color: #f4a442;
+    }
+</style>
+
+<body>
+    <section class="has-text-centered" style="height: 30%; margin: auto;background-image: url(./images/5345029.jpg);">
+        <b class="p-6-desktop mt-6 is-size-1-touch" style="font-size: 150px;color:#fff;">PROJECT DOG TAG</b>
+    </section>
+    <section class="p-6 columns">
+        <div class="card m-auto column">
+            <p class="is-size-3 p-4"><strong>What The Website Doing?</strong></p>
+            <p>This thing uses your device orientation data to detect movement and calculate a approximate location based on your given longitude and latitude.</p>
+        </div>
+        <div class="card mx-auto my-6 column">
+            <b><p class="is-size-3 p-4" style="color: #D83A56;">Error!</p></b>
+            <p class="container is-size-5 p-4"><strong style="color: #FF616D;">Trying giving permission for motion sensor. <br> If still not working then either your Device don't have a motion sensor or browser doesn't support it.</strong></p>
+        </div>
+
+        <div class="card mx-auto my-6 column">
+            <b><p class="is-size-3 p-4">Your Location<br></p></b>
+            <p id="p" class="container has-text-dark is-size-5 p-4"></p>
+        </div>
+    </section>
+    <footer class="has-background-dark has-text-white p-6">
+        <h1 class="is-size-5">Background Image Source</h1>
+        <a href='https://www.freepik.com/vectors/travel'>Travel vector created by macrovector - www.freepik.com</a>
+        <a href="https://www.pexels.com/photo/drone-shot-of-trees-5345029/">Photo by Olenka Sergienko from Pexels</a>
+    </footer>
+
+    <script>
+        let d = document.querySelectorAll("div");
+        d[1].style.display = 'none';
+        d[2].style.display = 'none';
+        window.addEventListener("deviceorientation", (e) => {
+            if (e.alpha === null || e.beta === null || e.gamma === null) {
+                d[1].style.display = 'block';
+            } else {
+                console.log("sd")
+                d[2].style.display = 'block';
+                document.querySelector("#p").innerHTML = '<b>X:</b> ' + e.alpha + '<br><b>Y:</b> ' + e.beta;
+            }
+        });
+    </script>
+</body>
+
+</html>
