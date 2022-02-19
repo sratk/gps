@@ -87,15 +87,16 @@
         <div id="ok" class="card mx-auto my-6 column">
             <b><p class="is-size-3 p-4">Your Location<br></p></b>
             <p id="p" class="container has-text-dark is-size-5 p-4"></p>
+            <button id="rst" class="button is-dark has-text-white is-rounded ">Reset</button>
         </div>
     </section>
-    <footer class="has-background-dark has-text-white p-6">
-        <h1 class="is-size-4">Background Image Sources</h1>
+    <footer class="has-background-dark has-text-white p-6 ">
+        <h1 class="is-size-4 ">Background Image Sources</h1>
         <br>
         <ul>
             <li><a href='https://www.freepik.com/vectors/travel'>Travel vector created by macrovector - www.freepik.com</a></li>
             <br>
-            <li><a href="https://www.pexels.com/photo/drone-shot-of-trees-5345029/">Photo by Olenka Sergienko from Pexels</a></li>
+            <li><a href="https://www.pexels.com/photo/drone-shot-of-trees-5345029/ ">Photo by Olenka Sergienko from Pexels</a></li>
         </ul>
     </footer>
 
@@ -109,8 +110,8 @@
         let p = null;
         let a = null;
         let d = [0, 0, 0];
-        let err = document.querySelector("#err");
-        let ok = document.querySelector("#ok");
+        let err = document.querySelector("#err ");
+        let ok = document.querySelector("#ok ");
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
@@ -122,25 +123,34 @@
             yc = [laSensor.x, laSensor.y, laSensor.z];
         });
         laSensor.start();
-        window.addEventListener("deviceorientation", (e) => {
-            p = e;
-            if (p.alpha != null || p.beta != null || p.gamma != null) {
-                x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
-                xc = [e.alpha, e.beta, e.gamma];
-            }
-        });
+        window.addEventListener("deviceorientation",
+            (e) => {
+                p = e;
+                if (p.alpha != null || p.beta != null || p.gamma != null) {
+                    x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                    xc = [e.alpha, e.beta,
+                        e.gamma
+                    ];
+                }
+            });
         setInterval(() => {
             if (p.alpha === null || p.beta === null || p.gamma === null) {
                 err.style.display = 'block';
             } else {
                 ok.style.display = 'block';
             }
-            yc[0] = (yc[0] > .1 || yc[0] < -.1) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
-            yc[1] = (yc[1] > .1 || yc[1] < -.1) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
-            yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
+            yc[0] = (yc[0] > .2 || yc[0] <
+                -.2) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
+            yc[1] = (yc[1] > .2 || yc[1] <
+                -.2) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
+            yc[2] = (yc[2] > .2 || yc[2] <
+                -.2) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
             d = [d[0] + yc[0] * 0.01, d[1] + yc[1] * 0.01, d[2] + yc[2] * 0.01];
             document.querySelector("#p").innerHTML = x + y + '<br>Distance: X: ' + d[0] + ' Y: ' + d[1] + ' Z: ' + d[2];
         }, 200);
+        document.getElementById("rst").addEventListener("click", () => {
+            d = [0, 0, 0];
+        });
     </script>
 </body>
 
