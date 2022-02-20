@@ -105,7 +105,6 @@
         let y = null;
         let xp = [];
         let xc = [];
-        let yp = [0, 0, 0];
         let yc = [];
         let p = null;
         let a = null;
@@ -154,9 +153,8 @@
                     return intre(x);
                 }
                 yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
-                dc = dc + Math.sqrt(srq(yc[0] - yp[0]) + srq(yc[1] - yp[1]) + srq(yc[2] - yp[2]));
+                dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + dc;
-                yp = [yc[0], yc[1], yc[2]];
             },
             20);
         document.getElementById("rst").addEventListener("click", () => {
