@@ -109,7 +109,7 @@
         let p = null;
         let a = null;
         let dc = 0;
-        let t = 1 / 5;
+        let t = 1 / 10;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
         err.style.display = 'none';
@@ -139,6 +139,9 @@
                 } else {
                     ok.style.display = 'block';
                 }
+                yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
+                yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
+                yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
 
                 function intre(a) {
                     return (a * t * t * t) / 6;
@@ -149,14 +152,14 @@
                 }
 
                 function dtr(x) {
-                    x = (x >= -.1 && x <= .1) ? 0 : ((x > 0) ? x : x * -1);
+                    x = (x > 0) ? x : x * -1;
                     return intre(x);
                 }
                 yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 10).toFixed(2);
             },
-            200);
+            100);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
