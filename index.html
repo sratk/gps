@@ -106,8 +106,6 @@
         let xp = [];
         let xc = [];
         let yc = [];
-        let p = null;
-        let a = null;
         let dc = 0;
         let t = 1 / 10;
         let err = document.querySelector("#err ");
@@ -118,14 +116,12 @@
             frequency: 5
         });
         laSensor.addEventListener('reading', e => {
-            a = e;
             y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
             yc = [laSensor.x, laSensor.y, laSensor.z];
         });
         laSensor.start();
         window.addEventListener("deviceorientation", (e) => {
-            p = e;
-            if (p.alpha != null || p.beta != null || p.gamma != null) {
+            if (e.alpha != null || e.beta != null || e.gamma != null) {
                 x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
                 xc = [e.alpha, e.beta, e.gamma];
             }
