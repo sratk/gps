@@ -134,9 +134,9 @@
                 } else {
                     ok.style.display = 'block';
                 }
-                yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
-                yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
-                yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
+                yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0].toFixed(5);
+                yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1].toFixed(5);
+                yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2].toFixed(5);
 
                 function intre(a) {
                     return (a * t * t * t) / 6;
@@ -154,7 +154,7 @@
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(4);
             },
-            100);
+            10);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
