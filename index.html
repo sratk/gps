@@ -148,7 +148,8 @@
             yc[1] = (yc[1] > .1 || yc[1] < -.1) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
             yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
             d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> XY: ' + d[0] + d[1] + '<br> Z: ' + d[2];
+            let c = d[0] + d[1];
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> XY: ' + c + '<br> Z: ' + d[2];
         }, 200);
         document.getElementById("rst").addEventListener("click", () => {
             d = [0, 0, 0];
