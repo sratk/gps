@@ -106,15 +106,15 @@
         let xp = [];
         let xc = [];
         let yc = [];
+        let p = null;
         let dc = 0;
-        let p = [];
         let t = 1 / 10;
-        let err = document.querySelector("#err");
-        let ok = document.querySelector("#ok");
+        let err = document.querySelector("#err ");
+        let ok = document.querySelector("#ok ");
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 60
+            frequency: 10
         });
         laSensor.addEventListener('reading', e => {
             y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
@@ -123,39 +123,40 @@
         laSensor.start();
         window.addEventListener("deviceorientation", (e) => {
             p = e;
-            if (e.alpha != null || e.beta != null || e.gamma != null) {
+            if (p.alpha != null || p.beta != null || p.gamma != null) {
                 x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
-                xc = [e.alpha, e.beta, e.gamma];
+                xc = [e.alpha, e.beta,
+                    e.gamma
+                ];
             }
         });
         setInterval(() => {
-            if (p.alpha === null || p.beta === null || p.gamma === null) {
-                err.style.display = 'block';
-            } else {
-                ok.style.display = 'block';
-            }
-            yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
-            yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
-            yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
+                if (p.alpha === null || p.beta === null || p.gamma === null) {
+                    err.style.display = 'block';
+                } else {
+                    ok.style.display = 'block';
+                }
+                yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
+                yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
+                yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
 
-            function intre(a) {
-                return (a * t * t * t) / 6;
-            }
+                function intre(a) {
+                    return (a * t * t * t) / 6;
+                }
 
-            function srq(a) {
-                return a * a;
-            }
+                function srq(a) {
+                    return a * a;
+                }
 
-            function dtr(x) {
-                x = (x > 0) ? x : x * -1;
-                return intre(x);
-            }
-            yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
-            console.log(dc);
-            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) > 0 ? Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) : dc;
-            console.log(dc);
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(2);
-        }, 10);
+                function dtr(x) {
+                    x = (x > 0) ? x : x * -1;
+                    return intre(x);
+                }
+                yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
+                dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
+                document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(2);
+            },
+            100);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
