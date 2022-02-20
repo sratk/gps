@@ -108,7 +108,7 @@
         let yc = [];
         let p = null;
         let dc = 0;
-        let t = 1 / 1000;
+        let t = 1 / 50;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
         err.style.display = 'none';
@@ -154,7 +154,7 @@
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(8);
             },
-            1);
+            20);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
