@@ -115,7 +115,7 @@
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 10
+            frequency: 5
         });
         laSensor.addEventListener('reading', e => {
             a = e;
@@ -127,9 +127,7 @@
             p = e;
             if (p.alpha != null || p.beta != null || p.gamma != null) {
                 x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
-                xc = [e.alpha, e.beta,
-                    e.gamma
-                ];
+                xc = [e.alpha, e.beta, e.gamma];
             }
         });
         setInterval(() => {
@@ -156,7 +154,7 @@
                 }
                 yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
-                document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 10);
+                document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100);
             },
             100);
         document.getElementById("rst").addEventListener("click", () => {
