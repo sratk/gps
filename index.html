@@ -116,7 +116,7 @@
         let date = new Date();
         let t = date.getSeconds();
         let laSensor = new LinearAccelerationSensor({
-            frequency: 100
+            frequency: 10
         });
         laSensor.addEventListener('reading', e => {
             y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
