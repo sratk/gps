@@ -152,7 +152,7 @@
             }
             yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
             console.log(dc);
-            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
+            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) > 0 ? Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) : 0;
             console.log(dc);
             document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(2);
         }, 100);
