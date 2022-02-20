@@ -123,16 +123,15 @@
             yc = [laSensor.x, laSensor.y, laSensor.z];
         });
         laSensor.start();
-        window.addEventListener("deviceorientation",
-            (e) => {
-                p = e;
-                if (p.alpha != null || p.beta != null || p.gamma != null) {
-                    x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
-                    xc = [e.alpha, e.beta,
-                        e.gamma
-                    ];
-                }
-            });
+        window.addEventListener("deviceorientation", (e) => {
+            p = e;
+            if (p.alpha != null || p.beta != null || p.gamma != null) {
+                x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
+                xc = [e.alpha, e.beta,
+                    e.gamma
+                ];
+            }
+        });
         setInterval(() => {
                 if (p.alpha === null || p.beta === null || p.gamma === null) {
                     err.style.display = 'block';
