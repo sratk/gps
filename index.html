@@ -151,7 +151,14 @@
                     return intre(x);
                 }
                 yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
-                dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
+                if (yc[0] < yc[1] && yc[0] < yc[2]) {
+                    dc = dc + Math.sqrt(srq(yc[1]) + srq(yc[2]));
+                } else if (yc[1] < yc[0] && yc[1] < yc[2]) {
+                    dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[2]));
+                } else {
+                    dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]));
+                }
+                //dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(8);
             },
             20);
