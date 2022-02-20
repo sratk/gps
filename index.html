@@ -110,6 +110,7 @@
         let p = null;
         let a = null;
         let d = [0, 0, 0];
+        let dc = 0;
         let t = 1 / 50;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
@@ -153,7 +154,7 @@
                 yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
                 yp = [yc[0], yc[1], yc[2]];
                 d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
-                let dc = dc + Math.sqrt(intre(yc[0]) * intre(yc[0]) + intre(yc[1]) * intre(yc[1]));
+                dc = dc + Math.sqrt(intre(yc[0]) * intre(yc[0]) + intre(yc[1]) * intre(yc[1]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> X: ' + dc + '<br> Y: ' + d[1] + '<br> Z: ' + d[2];
             },
             20);
