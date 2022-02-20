@@ -151,6 +151,7 @@
                 yc[0] = (yc[0] > .1 || yc[0] < -.1) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
                 yc[1] = (yc[1] > .1 || yc[1] < -.1) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
                 yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
+                yp = [yc[0], yc[1], yc[2]];
                 d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
                 let dc = dc + Math.sqrt(intre(yc[0]) * intre(yc[0]) + intre(yc[1]) * intre(yc[1]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> X: ' + dc + '<br> Y: ' + d[1] + '<br> Z: ' + d[2];
