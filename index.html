@@ -128,7 +128,7 @@
             (e) => {
                 p = e;
                 if (p.alpha != null || p.beta != null || p.gamma != null) {
-                    x = 'Position' + '<br><b>X:</b> ' + e.alpha.toPrecision(2) + '<br><b>Y:</b> ' + e.beta.toPrecision(2) + '<br><b>Z:</b> ' + e.gamma.toPrecision(2);
+                    x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
                     xc = [e.alpha, e.beta,
                         e.gamma
                     ];
@@ -140,13 +140,14 @@
             } else {
                 ok.style.display = 'block';
             }
-            yc[0] = (yc[0] > .2 || yc[0] <
-                -.2) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
-            yc[1] = (yc[1] > .2 || yc[1] <
-                -.2) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
-            yc[2] = (yc[2] > .2 || yc[2] <
-                -.2) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
-            d = [d[0] + yc[0] * t * t, d[1] + yc[1] * t * t, d[2] + yc[2] * t * t];
+
+            function intre(a) {
+                return (a * t * t * t) / 6;
+            }
+            yc[0] = (yc[0] > .2 || yc[0] < -.2) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
+            yc[1] = (yc[1] > .2 || yc[1] < -.2) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
+            yc[2] = (yc[2] > .2 || yc[2] < -.2) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
+            d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
             document.querySelector("#p").innerHTML = x + y + '<br>Distance: X: ' + d[0] + ' Y: ' + d[1] + ' Z: ' + d[2];
         }, 200);
         document.getElementById("rst").addEventListener("click", () => {
