@@ -152,8 +152,8 @@
             }
             yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
             dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
-            let r = dc * 100;
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + r + dc;
+            console.log(Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])));
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(2);
         }, 100);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
