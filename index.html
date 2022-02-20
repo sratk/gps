@@ -110,7 +110,7 @@
         let p = null;
         let a = null;
         let d = [0, 0, 0];
-        let t = 1 / 50;
+        let t = 1 / 5;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
         err.style.display = 'none';
@@ -148,7 +148,7 @@
             yc[1] = (yc[1] > .1 || yc[1] < -.1) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
             yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
             d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance: X: ' + d[0].toFixed(3) + ' Y: ' + d[1].toFixed(3) + ' Z: ' + d[2].toFixed(3);
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> X: ' + d[0].toFixed(3) + '<br> Y: ' + d[1].toFixed(3) + '<br> Z: ' + d[2].toFixed(3);
         }, 200);
         document.getElementById("rst").addEventListener("click", () => {
             d = [0, 0, 0];
