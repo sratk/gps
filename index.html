@@ -142,13 +142,13 @@
             }
 
             function intre(a) {
-                return (a * t * t * t * 100) / 6;
+                return (a * t * t * t) / 6;
             }
             yc[0] = (yc[0] > .1 || yc[0] < -.1) ? (yc[0] > 0 ? yc[0] : -1 * yc[0]) : 0;
             yc[1] = (yc[1] > .1 || yc[1] < -.1) ? (yc[1] > 0 ? yc[1] : -1 * yc[1]) : 0;
             yc[2] = (yc[2] > .1 || yc[2] < -.1) ? (yc[2] > 0 ? yc[2] : -1 * yc[2]) : 0;
             d = [d[0] + intre(yc[0]), d[1] + intre(yc[1]), d[2] + intre(yc[2])];
-            document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> X: ' + d[0].toFixed(3) + '<br> Y: ' + d[1].toFixed(3) + '<br> Z: ' + d[2].toFixed(3);
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance<br> X: ' + d[0] + '<br> Y: ' + d[1] + '<br> Z: ' + d[2];
         }, 200);
         document.getElementById("rst").addEventListener("click", () => {
             d = [0, 0, 0];
