@@ -108,11 +108,13 @@
         let yc = [];
         let p = null;
         let dc = 0;
-        let t = 1 / 10;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
         err.style.display = 'none';
         ok.style.display = 'none';
+        let date = new Date();
+        let tp = 0;
+        let t = 0;
         let laSensor = new LinearAccelerationSensor({
             frequency: 5
         });
@@ -140,7 +142,7 @@
                 yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
                 yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
 
-                function intre(a) {
+                function intre(a, t) {
                     return (a * t * t * t) / 6;
                 }
 
@@ -152,9 +154,11 @@
                     x = (x > 0) ? x : x * -1;
                     return intre(x);
                 }
-                yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
+                t = date.getSeconds();
+                yc = [dtr(yc[0], (t - tp)), dtr(yc[1], (t - tp)), dtr(yc[2], (t - tp))];
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(4);
+                tp = t;
             },
             100);
         document.getElementById("rst").addEventListener("click", () => {
