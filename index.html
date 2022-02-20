@@ -109,13 +109,13 @@
         let p = null;
         let a = null;
         let dc = 0;
-        let t = 1 / 50;
+        let t = 1 / 5;
         let err = document.querySelector("#err ");
         let ok = document.querySelector("#ok ");
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 50
+            frequency: 5
         });
         laSensor.addEventListener('reading', e => {
             a = e;
@@ -156,7 +156,7 @@
                 dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
                 document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + dc.toFixed(2);
             },
-            20);
+            200);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
