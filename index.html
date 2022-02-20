@@ -114,7 +114,7 @@
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 5
+            frequency: 20
         });
         laSensor.addEventListener('reading', e => {
             y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
