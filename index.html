@@ -108,13 +108,13 @@
         let yc = [];
         let dc = 0;
         let p = [];
-        let t = 1 / 10;
+        let t = 1 / 100;
         let err = document.querySelector("#err");
         let ok = document.querySelector("#ok");
         err.style.display = 'none';
         ok.style.display = 'none';
         let laSensor = new LinearAccelerationSensor({
-            frequency: 20
+            frequency: 60
         });
         laSensor.addEventListener('reading', e => {
             y = '<br>Acc.' + '<br><b>X:</b> ' + laSensor.x + '<br><b>Y:</b> ' + laSensor.y + '<br><b>Z:</b> ' + laSensor.z + "<br>";
@@ -152,10 +152,10 @@
             }
             yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
             console.log(dc);
-            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) > 0 ? Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) : 0;
+            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) > 0 ? Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2])) : dc;
             console.log(dc);
             document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + (dc * 100).toFixed(2);
-        }, 100);
+        }, 10);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
