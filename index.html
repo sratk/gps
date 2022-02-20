@@ -129,33 +129,32 @@
             }
         });
         setInterval(() => {
-                if (p.alpha === null || p.beta === null || p.gamma === null) {
-                    err.style.display = 'block';
-                } else {
-                    ok.style.display = 'block';
-                }
-                yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
-                yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
-                yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
+            if (p.alpha === null || p.beta === null || p.gamma === null) {
+                err.style.display = 'block';
+            } else {
+                ok.style.display = 'block';
+            }
+            yc[0] = (yc[1] === 0 && yc[2] === 0) ? 0 : yc[0];
+            yc[1] = (yc[0] === 0 && yc[2] === 0) ? 0 : yc[1];
+            yc[2] = (yc[0] === 0 && yc[1] === 0) ? 0 : yc[2];
 
-                function intre(a) {
-                    return (a * t * t * t) / 6;
-                }
+            function intre(a) {
+                return (a * t * t * t) / 6;
+            }
 
-                function srq(a) {
-                    return a * a;
-                }
+            function srq(a) {
+                return a * a;
+            }
 
-                function dtr(x) {
-                    x = (x > 0) ? x : x * -1;
-                    return intre(x);
-                }
-                yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
-                dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
-                let r = dc * 100;
-                document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + r;
-            },
-            100);
+            function dtr(x) {
+                x = (x > 0) ? x : x * -1;
+                return intre(x);
+            }
+            yc = [dtr(yc[0]), dtr(yc[1]), dtr(yc[2])];
+            dc = dc + Math.sqrt(srq(yc[0]) + srq(yc[1]) + srq(yc[2]));
+            let r = dc * 100;
+            document.querySelector("#p").innerHTML = x + y + '<br>Distance: ' + r + dc;
+        }, 100);
         document.getElementById("rst").addEventListener("click", () => {
             dc = 0;
         });
