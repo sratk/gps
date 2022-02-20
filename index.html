@@ -107,6 +107,7 @@
         let xc = [];
         let yc = [];
         let dc = 0;
+        let p = [];
         let t = 1 / 10;
         let err = document.querySelector("#err");
         let ok = document.querySelector("#ok");
@@ -121,6 +122,7 @@
         });
         laSensor.start();
         window.addEventListener("deviceorientation", (e) => {
+            p = e;
             if (e.alpha != null || e.beta != null || e.gamma != null) {
                 x = 'Position' + '<br><b>X:</b> ' + e.alpha.toFixed(2) + '<br><b>Y:</b> ' + e.beta.toFixed(2) + '<br><b>Z:</b> ' + e.gamma.toFixed(2);
                 xc = [e.alpha, e.beta, e.gamma];
